@@ -74,7 +74,7 @@ def upload_files_to_sftp(local_path, remote_path, sftp, local_error_path):
             try:
                 # Check if the file is more than 5 minutes old
                 file_modified_time = os.path.getmtime(local_file_path)
-                if (current_time - file_modified_time) > 5:
+                if (current_time - file_modified_time) > 300:
                     send_flag = True
                     # Move the old file to the error folder
                     error_folder_path = os.path.join(local_error_path)
@@ -108,7 +108,7 @@ def upload_files_to_sftp(local_path, remote_path, sftp, local_error_path):
         print(f"Error processing files for upload: {str(e)}")
 
 
-def monitor_and_alert_error_files(local_error_path, alert_threshold_seconds=5):
+def monitor_and_alert_error_files(local_error_path, alert_threshold_seconds=300):
     global send_flag
     print("send_flag", send_flag)
 
@@ -169,7 +169,7 @@ if __name__ == "__main__":
 
         # Function 3: Monitor and handle error files
         # local_error_path = "local/error/"
-        monitor_and_alert_error_files(local_error_path, alert_threshold_seconds=5)
+        monitor_and_alert_error_files(local_error_path, alert_threshold_seconds=300)
 
     finally:
         # Close the SFTP connection
