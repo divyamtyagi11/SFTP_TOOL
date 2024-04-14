@@ -40,7 +40,7 @@ This script provides functionality to interact with a remote SFTP server, enabli
 Run the script with the required arguments to interact with the SFTP server:
 ```bash
 python sftp_tool.py --hostname <hostname> --username <username> --private-key <path_to_private_key>
-
+```
 ## Functionality
 
 - **Download Files from SFTP Server**
